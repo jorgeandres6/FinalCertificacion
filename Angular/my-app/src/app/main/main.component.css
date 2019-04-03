@@ -1,0 +1,13 @@
+.contenedor_principal{
+  background-image: url('../images/main-fondo.jpg');
+  width: device-width;
+  height: 100vh;
+  position: static;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  outline-style: none;
+  border-style: none;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
