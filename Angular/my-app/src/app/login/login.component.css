@@ -1,5 +1,5 @@
 .contenedor_principal{
-  background-image: url('../images/login-fondo.jpg');
+  background-image: url('../../assets/images/login-fondo.jpg');
   width: device-width;
   height: 100vh;
   position: static;
@@ -15,20 +15,6 @@
   justify-content: center;
 }
 
-.contenedor_login, .formulario_login{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-}
-
-#boton_login{
-  border-radius: 4px;
-  border: none;
-}
-
-.titulo_login{
-  font-family: 'Kaushan Script', cursive;
-  color: #ffffff;
-  font-size: 40px;
+h1{
+  color: white;
 }

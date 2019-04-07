@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CatalogoComponent } from '../catalogo/catalogo.component'
-import { VentasComponent } from '../ventas/ventas.component'
+import { CatalogoComponent } from '../catalogo/catalogo.component';
 
 @Component({
   selector: 'app-main',

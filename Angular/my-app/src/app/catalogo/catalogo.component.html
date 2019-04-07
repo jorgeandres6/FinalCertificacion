@@ -1,7 +1,7 @@
 <div class="contenedor_principal">
   <div class="row" id="barra_titulo">
     <div class="col s6">
-      <h1>Catalogo de productos</h1>
+      <h2>Catalogo de productos</h2>
     </div>
     <div class="col s4 offset-s7">
       <div class="row">
@@ -14,18 +14,31 @@
   </div>
 
   <div class="row">
-     <div class="col s12 m4">
+
+     <div class="col s6 m3">
        <div class="card">
         <div class="card-image">
-          <img src="images/sample-1.jpg">
-          <span class="card-title">Card Title</span>
+          <img src="assets/images/ajo.jpg">
+          <span class="card-title">{{Titulo}}</span>
         </div>
         <div class="card-content">
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
+          <p>Precio: {{Precio}}</p>
+          <p>Unidades disponibles {{Disponible}}</p>
         </div>
         <div class="card-action">
-          <a href="#">This is a link</a>
+          <div class="row">
+            <div class="col s12">
+              <a class="waves-effect waves-light btn-small"><i class="material-icons left">info_outline</i>Ver Mas</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s8">
+              <a class="waves-effect waves-light btn-small"><i class="material-icons left">add</i>Agregar</a>
+            </div>
+            <div class="col s4">
+              <input type="number" min="1" step="1" value="1">
+            </div>
+          </div>
         </div>
       </div>
      </div>
