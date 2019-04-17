@@ -5,16 +5,16 @@
     </div>
   </div>
   <div class="row">
-    <div class="col s8">
+    <div class="col s8" *ngFor="let item of productos">
       <div class="card horizontal">
         <div class="card-image">
-          <img src="https://lorempixel.com/100/190/nature/6">
+          <img src="assets/images/{{item.template}}" class="responsive-img">
         </div>
         <div class="card-stacked">
           <div class="card-content">
-            <h3>{{nombre_item}}</h3>
+            <h3>{{item.nombre}}</h3>
             <p></p>
-            <p>Unidades: {{unidades}}</p>
+            <p>Unidades: {{item.unidades}}</p>
             <p>Subtotal: {{Subtotal}}</p>
           </div>
         </div>
