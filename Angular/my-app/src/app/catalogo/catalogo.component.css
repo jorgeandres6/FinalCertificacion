@@ -3,3 +3,12 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+img{
+  max-height: 200px;
+}
+
+.card-title{
+  opacity: 0.8;
+  border-radius: 15px;
+}
