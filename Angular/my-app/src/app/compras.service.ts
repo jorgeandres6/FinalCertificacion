@@ -11,7 +11,6 @@ export class ComprasService {
 
   agregarCarrito(producto) {
       this.productosCarrito.push(producto);
-      console.log(this.productosCarrito);
   }
 
 }

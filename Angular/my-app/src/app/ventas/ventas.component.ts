@@ -8,13 +8,15 @@ import { ComprasService } from '../compras.service';
 })
 export class VentasComponent implements OnInit {
 
+  total = 0;
+
   public productos:any = null;
 
   constructor(private compras : ComprasService) { }
 
   ngOnInit() {
     this.productos = this.compras.productosCarrito;
-    console.log(this.compras.productosCarrito);
+    this.total=+this.productos[indice].subtotal;
   }
 
 }

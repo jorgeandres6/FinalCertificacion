@@ -8,9 +8,12 @@ import { ComprasService } from '../compras.service';
   styleUrls: ['./catalogo.component.css'],
   providers:[HttpService]
 })
+
 export class CatalogoComponent implements OnInit {
 
   public productos:any = null;
+
+  cantidad:any = [];
 
   constructor(private httpService : HttpService, private compras : ComprasService) { }
 
@@ -22,6 +25,8 @@ export class CatalogoComponent implements OnInit {
   }
 
   agregarProducto(indice){
+    this.productos[indice].cantidad = this.cantidad[indice];
+    this.productos[indice].subtotal = this.productos[indice].precio * this.productos[indice].cantidad;
     this.compras.agregarCarrito(this.productos[indice]);
   }
 
