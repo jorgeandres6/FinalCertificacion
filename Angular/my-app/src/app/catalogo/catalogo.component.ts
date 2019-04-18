@@ -32,6 +32,12 @@ export class CatalogoComponent implements OnInit {
         displayLength: 500
       })
     }
+    else if(this.cantidad[indice]>this.productos[indice].unidades){
+      toast({
+        html: 'No hay tanta existencia de este articulo',
+        displayLength: 500
+      })
+    }
     else{
       this.productos[indice].cantidad = this.cantidad[indice];
       this.productos[indice].subtotal = this.productos[indice].precio * this.productos[indice].cantidad;
