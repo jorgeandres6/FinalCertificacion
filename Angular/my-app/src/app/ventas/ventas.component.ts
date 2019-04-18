@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ComprasService } from '../compras.service';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-ventas',
@@ -12,10 +13,16 @@ export class VentasComponent implements OnInit {
 
   public productos:any = null;
 
-  constructor(private compras : ComprasService) { }
+  constructor(private compras : ComprasService, private httpService : HttpService) { }
 
   ngOnInit() {
     this.productos = this.compras.productosCarrito;
+  }
+
+  updateCantidad(){
+    this.productos.forEach(item => {
+      this.httpService.updateCantidad(item.id,item.cantidad);
+    });
   }
 
 }

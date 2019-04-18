@@ -41,6 +41,7 @@ export class CatalogoComponent implements OnInit {
     else{
       this.productos[indice].cantidad = this.cantidad[indice];
       this.productos[indice].subtotal = this.productos[indice].precio * this.productos[indice].cantidad;
+      this.productos[indice].id=indice;
       this.compras.agregarCarrito(this.productos[indice]);
       this.compras.total=this.compras.total+this.productos[indice].subtotal;
     }

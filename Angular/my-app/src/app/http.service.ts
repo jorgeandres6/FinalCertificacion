@@ -19,14 +19,18 @@ export class HttpService {
     return this.httpClient.get('https://basededatos-2127f.firebaseio.com/productos/.json',{ observe: 'response' })
   }
 
-  /*getProductos (){
-    let productos;
-    this.httpClient.get('https://basededatos-2127f.firebaseio.com/productos/.json')
-    .subscribe(response => {
-      productos = response;
-      console.log(productos);
-      return productos;
-    });
-  }*/
+  updateCantidad (index,cantidad){
+    this.httpClient.patch("https://basededatos-2127f.firebaseio.com/productos/"+index+"/.json",
+    {
+      "unidades" : cantidad
+    }).subscribe(
+      data =>{
+        console.log("Actualizacion exitosa", data);
+      },
+      error =>{
+        console.log("Error", error);
+      }
+    );
+  }
 
 }
