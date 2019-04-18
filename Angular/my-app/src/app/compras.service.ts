@@ -7,6 +7,8 @@ export class ComprasService {
 
   public productosCarrito:any = [];
 
+  public total = 0;
+
   constructor() { }
 
   agregarCarrito(producto) {

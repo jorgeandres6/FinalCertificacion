@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { ComprasService } from '../compras.service';
+import { toast } from 'materialize-css';
 
 @Component({
   selector: 'app-catalogo',
@@ -25,9 +26,18 @@ export class CatalogoComponent implements OnInit {
   }
 
   agregarProducto(indice){
-    this.productos[indice].cantidad = this.cantidad[indice];
-    this.productos[indice].subtotal = this.productos[indice].precio * this.productos[indice].cantidad;
-    this.compras.agregarCarrito(this.productos[indice]);
+    if (isNaN(this.cantidad[indice]) || this.cantidad[indice]<1){
+      toast({
+        html: 'Elija por lo menos 1 elemento antes de añadirlo',
+        displayLength: 500
+      })
+    }
+    else{
+      this.productos[indice].cantidad = this.cantidad[indice];
+      this.productos[indice].subtotal = this.productos[indice].precio * this.productos[indice].cantidad;
+      this.compras.agregarCarrito(this.productos[indice]);
+      this.compras.total=this.compras.total+this.productos[indice].subtotal;
+    }
   }
 
 }

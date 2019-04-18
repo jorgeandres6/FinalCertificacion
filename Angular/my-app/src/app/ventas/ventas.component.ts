@@ -8,7 +8,7 @@ import { ComprasService } from '../compras.service';
 })
 export class VentasComponent implements OnInit {
 
-  total = 0;
+  total = this.compras.total;
 
   public productos:any = null;
 
@@ -16,7 +16,6 @@ export class VentasComponent implements OnInit {
 
   ngOnInit() {
     this.productos = this.compras.productosCarrito;
-    this.total=+this.productos[indice].subtotal;
   }
 
 }

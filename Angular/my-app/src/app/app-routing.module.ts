@@ -8,8 +8,7 @@ import { VentasComponent } from './ventas/ventas.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
-  { path: 'main',
-    component: MainComponent,
+  { path: 'main', component: MainComponent,
     children: [
       {path:'', redirectTo: 'catalogo', pathMatch: 'full'},
       {path:'catalogo', component: CatalogoComponent},
