@@ -12,8 +12,19 @@ export class LoginComponent implements OnInit {
 
   constructor(private httpService : HttpService) { }
 
+  public verificacion:any;
+
   ngOnInit() {
-    this.httpService.getDatos();
+
+  }
+
+  //submitted = false;
+
+  //onSubmit() { this.submitted = true; }
+
+  login(valor:any){
+    this.httpService.getDatos(valor.usuario,valor.psw);
+    //console.log(valor);
   }
 
 }
