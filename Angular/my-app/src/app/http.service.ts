@@ -32,6 +32,10 @@ export class HttpService {
     return this.httpClient.get('https://basededatos-2127f.firebaseio.com/productos/.json',{ observe: 'response' })
   }
 
+  getItem(id){
+    return this.httpClient.get('https://basededatos-2127f.firebaseio.com/productos/'+id+'/unidades.json' ,{ observe: 'response' });
+  }
+
   updateCantidad (index,cantidad){
     this.httpClient.patch("https://basededatos-2127f.firebaseio.com/productos/"+index+"/.json",
     {

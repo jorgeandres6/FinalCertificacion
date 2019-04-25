@@ -15,4 +15,9 @@ export class ComprasService {
       this.productosCarrito.push(producto);
   }
 
+  borrarCarrito(){
+    this.productosCarrito = [];
+    this.total = 0;
+  }
+
 }
