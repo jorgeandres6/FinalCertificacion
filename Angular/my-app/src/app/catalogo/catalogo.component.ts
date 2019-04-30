@@ -22,6 +22,7 @@ export class CatalogoComponent implements OnInit {
 
     this.httpService.getProductos().subscribe(resp => {
       this.productos=resp.body;
+      console.log(resp.body);
     });
   }
 
@@ -48,7 +49,19 @@ export class CatalogoComponent implements OnInit {
         html: '<i class="material-icons">check_circle</i> Articulo añadido al carrito',
         displayLength: 1000
       })
+      this.cantidad[indice]=null;
     }
+  }
+
+  onSearchChange(searchValue : string ) {
+    this.productos.forEach(item =>{
+      item.visibilidad = item.nombre.includes(searchValue);
+      /*if(item.nombre == searchValue){
+        item.visibilidad = false;
+      }else{
+        item.visibilidad = true;
+      }*/
+    });
   }
 
 }

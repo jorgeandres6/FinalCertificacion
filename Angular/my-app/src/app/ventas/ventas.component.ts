@@ -39,4 +39,15 @@ export class VentasComponent implements OnInit {
       displayLength: 1000
     })
   }
+
+  cancelar(){
+    this.productos = null;
+    this.compras.borrarCarrito();
+    this.total = 0;
+    toast({
+      html: '<i class="material-icons">check_circle</i> Operación cancelada!',
+      displayLength: 1000
+    })
+  }
+
 }
