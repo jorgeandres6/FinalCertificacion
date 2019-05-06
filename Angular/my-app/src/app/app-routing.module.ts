@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { VentasComponent } from './ventas/ventas.component';
+import { InfoComponent } from './info/info.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -12,7 +13,8 @@ const appRoutes: Routes = [
     children: [
       {path:'', redirectTo: 'catalogo', pathMatch: 'full'},
       {path:'catalogo', component: CatalogoComponent},
-      {path:'ventas', component: VentasComponent}
+      {path:'ventas', component: VentasComponent},
+      {path:'info', component: InfoComponent}
     ]
   },
   { path: '',   redirectTo: '/login', pathMatch: 'full' }
@@ -22,7 +24,7 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      //{ enableTracing: true } // <-- debugging purposes only
     )
   ],
   exports: [

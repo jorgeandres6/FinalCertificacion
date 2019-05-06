@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ComprasService } from '../compras.service';
 import { HttpService } from '../http.service';
 import { toast } from 'materialize-css';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-ventas',
@@ -14,7 +15,7 @@ export class VentasComponent implements OnInit {
 
   public productos:any = null;
 
-  constructor(private compras : ComprasService, private httpService : HttpService) { }
+  constructor(private compras : ComprasService, private httpService : HttpService, private router:Router) { }
 
   ngOnInit() {
     this.productos = this.compras.productosCarrito;
@@ -38,6 +39,7 @@ export class VentasComponent implements OnInit {
       html: '<i class="material-icons">check_circle</i> Compra realizada con exito! Gracias por su compra',
       displayLength: 1000
     })
+    this.router.navigateByUrl('/main');
   }
 
   cancelar(){
@@ -48,6 +50,7 @@ export class VentasComponent implements OnInit {
       html: '<i class="material-icons">check_circle</i> Operación cancelada!',
       displayLength: 1000
     })
+    this.router.navigateByUrl('/main');
   }
 
 }

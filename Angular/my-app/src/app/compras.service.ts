@@ -9,6 +9,8 @@ export class ComprasService {
 
   public total = 0;
 
+  public info:any;
+
   constructor() { }
 
   agregarCarrito(producto) {
@@ -18,6 +20,10 @@ export class ComprasService {
   borrarCarrito(){
     this.productosCarrito = [];
     this.total = 0;
+  }
+
+  setInfoProd(producto){
+    this.info = producto;
   }
 
 }

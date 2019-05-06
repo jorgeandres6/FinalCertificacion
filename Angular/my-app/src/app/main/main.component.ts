@@ -11,7 +11,9 @@ import { Router } from "@angular/router";
 })
 export class MainComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private compras : ComprasService) { }
+
+  totalCarrito = this.compras.productosCarrito.length;
 
   ngOnInit() {
   }
@@ -19,6 +21,10 @@ export class MainComponent implements OnInit {
   logout(){
     localStorage.clear();
     this.router.navigateByUrl('/login');
+  }
+
+  cantidadCarrito(cantidad){
+    this.totalCarrito=cantidad;
   }
 
 }

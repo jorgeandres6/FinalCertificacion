@@ -9,6 +9,7 @@ import { MainComponent } from './main/main.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { AppRoutingModule } from './app-routing.module';
+import { InfoComponent } from './info/info.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AppRoutingModule } from './app-routing.module';
     LoginComponent,
     MainComponent,
     CatalogoComponent,
-    VentasComponent
+    VentasComponent,
+    InfoComponent
   ],
   imports: [
     FormsModule,

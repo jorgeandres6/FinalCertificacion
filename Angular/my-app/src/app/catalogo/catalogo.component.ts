@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { HttpService } from '../http.service';
 import { ComprasService } from '../compras.service';
 import { toast } from 'materialize-css';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-catalogo',
@@ -16,7 +17,7 @@ export class CatalogoComponent implements OnInit {
 
   cantidad:any = [];
 
-  constructor(private httpService : HttpService, private compras : ComprasService) { }
+  constructor(private httpService : HttpService, private compras : ComprasService, private router:Router) { }
 
   ngOnInit() {
 
@@ -25,6 +26,8 @@ export class CatalogoComponent implements OnInit {
       console.log(resp.body);
     });
   }
+
+  @Output() valueChange = new EventEmitter();
 
   agregarProducto(indice){
     if (isNaN(this.cantidad[indice]) || this.cantidad[indice]<1){
@@ -50,6 +53,7 @@ export class CatalogoComponent implements OnInit {
         displayLength: 1000
       })
       this.cantidad[indice]=null;
+      this.valueChange.emit(this.compras.productosCarrito.length);
     }
   }
 
@@ -62,6 +66,11 @@ export class CatalogoComponent implements OnInit {
         item.visibilidad = true;
       }*/
     });
+  }
+
+  info(indice){
+    this.compras.setInfoProd(this.productos[indice]);
+    this.router.navigateByUrl('/main/info');
   }
 
 }
