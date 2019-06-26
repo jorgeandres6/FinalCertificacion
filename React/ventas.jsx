@@ -1,16 +1,17 @@
 import React from 'react';
+import { Row, Input, Col, TextInput, Icon, Button } from 'react-materialize';
 
 class Ventas extends React.Component{
   render() {
     return(
       <div class="container">
-        <div class="row">
-          <div class="col s8">
+        <Row>
+          <Col s={8}>
             <h1>Carrito de compras</h1>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col s8">
+          </Col>
+        </Row>
+        <Row>
+          <Col s={8}>
             <div class="card horizontal">
               <div class="card-image">
                 <img src="assets/images/{{item.template}}" class="responsive-img" />
@@ -24,24 +25,24 @@ class Ventas extends React.Component{
                 </div>
               </div>
             </div>
-            </div>
+          </Col>
 
-          <div class="col s4">
-            <div class="row">
-              <div class="col s12">
+          <Col s={4}>
+            <Row>
+              <Col s={12}>
                 <h2>Total: total</h2>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col s6">
-                <a class="waves-effect waves-light btn">Cancelar</a>
-              </div>
-              <div class="col s6">
-                <a class="waves-effect waves-light btn">Pagar</a>
-              </div>
-            </div>
-          </div>
-        </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col s={6}>
+                <Button waves="light">Cancelar</Button>
+              </Col>
+              <Col s={6}>
+                <Button waves="light">Pagar</Button>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       </div>
 
     )
