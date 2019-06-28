@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Input, Col, TextInput, Icon, Card } from 'react-materialize';
+import { Row, Input, Col, TextInput, Icon, Card,  Button } from 'react-materialize';
 import { getProductos } from './utils/httpService';
 import { toast } from 'materialize-css';
 
@@ -7,25 +7,37 @@ class Catalogo extends React.Component{
 
   constructor(){
     super ();
-    this.state = {productos:[], carrito:JSON.parse(sessionStorage.getItem('carrito')), cantidad:JSON.parse(sessionStorage.getItem('cantidad'))};
+    this.state = {productos:[], carrito:[], cantidad:[], cantidad2:JSON.parse(sessionStorage.getItem('cantidad'))};
   }
+  //JSON.parse(sessionStorage.getItem('cantidad'))
+  //JSON.parse(sessionStorage.getItem('carrito'))
 
   handleChange(event, i) {
     event.preventDefault();
-    let carritoAux = this.state.carrito;
+    //let carritoAux = this.state.carrito;
+    let carritoAux = [];
+    if (sessionStorage.getItem('carrito') == null){
+      carritoAux = this.state.carrito;
+    }
+    else {
+      carritoAux = JSON.parse(sessionStorage.getItem('carrito'));
+    }
     carritoAux.push(this.state.productos[i]);
-    this.setState({carrito:carritoAux});
-    sessionStorage.setItem('carrito',JSON.stringify(this.state.carrito))
+    //this.setState({carrito:carritoAux});
+    sessionStorage.setItem('carrito',JSON.stringify(carritoAux))
     console.log(JSON.parse(sessionStorage.getItem('carrito')))
-    sessionStorage.setItem('cantidad',JSON.stringify(this.state.cantidad))
+    sessionStorage.setItem('cantidad',JSON.stringify(this.state.cantidad2))
     console.log(JSON.parse(sessionStorage.getItem('cantidad')))
     //sessionStorage.setItem('productos',);
   }
 
   handleChangeN(event,i) {
-    let cantidadAux = this.state.cantidad;
+    let cantidadAux = [];
+    if (sessionStorage.getItem('cantidad') != null){
+      cantidadAux=this.state.cantidad2;
+    }
     cantidadAux.push(event.target.value);
-    this.setState({cantidad:cantidadAux});
+    this.setState({cantidad2:cantidadAux});
     //sessionStorage.setItem('productos',);
   }
 
@@ -83,19 +95,19 @@ class Catalogo extends React.Component{
                   <div className="card-action">
                     <Row>
                       <Col s={12}>
-                        <button waves="light">Ver Mas
+                        <Button waves="light">Ver Mas
                             <Icon right>info_outline</Icon>
-                        </button>
+                        </Button>
                       </Col>
                     </Row>
                     <Row>
                       <Col s={8}>
-                        <button waves="light" onClick={(e) => this.handleChange(e,i)}>Agregar
+                        <Button waves="light" onClick={(e) => this.handleChange(e,i)}>Agregar
                             <Icon right>add</Icon>
-                        </button>
+                        </Button>
                       </Col>
                       <Col s={4}>
-                        <TextInput type="number" min="1" max={item.unidades} step="1" placeholder="Qty" onChange={(e) => this.handleChangeN(e,i)}/>
+                        <TextInput type="number" min="1" max={item.unidades} step="1" placeholder="Qty" value={this.state.cantidad[i]} value={this.state.cantidad[i]} onChange={(e) => this.handleChangeN(e,i)}/>
                       </Col>
                     </Row>
                   </div>

@@ -7,18 +7,33 @@ class Ventas extends React.Component{
 
   constructor(){
     super ();
-    this.state = {cantidad:JSON.parse(sessionStorage.getItem('cantidad'))};
+    this.state = {cantidad:JSON.parse(sessionStorage.getItem('cantidad')),carrito:[],total:0};
   }
 
   pagar(){
-    this.setState({cantidad:[0]});
+    this.setState({cantidad:[]});
     sessionStorage.removeItem('carrito');
     sessionStorage.removeItem('cantidad');
+    this.setState({carrito:[]});
+    this.setState({total:0});
+  }
+
+  componentWillMount(){
+    if (sessionStorage.getItem('carrito') != null){
+        let carritoAux = JSON.parse(sessionStorage.getItem('carrito'));
+        let total = 0;
+        carritoAux.map((item,i) => {
+          item.subtotal = item.precio * this.state.cantidad[i];
+          total = total + item.subtotal;
+        })
+        this.setState({carrito:carritoAux});
+        this.setState({total:total});
+    }
   }
 
   render() {
 
-    let ventaslist = JSON.parse(sessionStorage.getItem('carrito')).map((item,i) => {
+    let ventaslist = this.state.carrito.map((item,i) => {
       return(
         <Col s={8}>
           <div class="card horizontal">
@@ -50,7 +65,7 @@ class Ventas extends React.Component{
           <Col s={4}>
             <Row>
               <Col s={12}>
-                <h2>Total: total</h2>
+                <h2>Total: ${this.state.total}</h2>
               </Col>
             </Row>
             <Row>

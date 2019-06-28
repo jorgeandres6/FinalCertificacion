@@ -36,6 +36,10 @@ class Login extends React.Component{
     e.preventDefault();
   }
 
+  componentWillMount(){
+    sessionStorage.clear();
+  }
+
   render() {
     if (this.state.log === true) {
       return <Redirect to='/principal/'/>
