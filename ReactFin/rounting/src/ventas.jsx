@@ -1,7 +1,6 @@
 import React from 'react';
 import { Row, Input, Col, TextInput, Icon, Button } from 'react-materialize';
-
-
+import { updateCantidad } from './utils/httpService';
 
 class Ventas extends React.Component{
 
@@ -11,6 +10,18 @@ class Ventas extends React.Component{
   }
 
   pagar(){
+    this.state.carrito.map((item,i) => {
+      let nuevaCantidad = item.unidades - this.state.cantidad[i];
+      updateCantidad(i,nuevaCantidad);
+    });
+    this.vaciar();
+  }
+
+  cancelar(){
+    this.vaciar();
+  }
+
+  vaciar(){
     this.setState({cantidad:[]});
     sessionStorage.removeItem('carrito');
     sessionStorage.removeItem('cantidad');
@@ -70,7 +81,7 @@ class Ventas extends React.Component{
             </Row>
             <Row>
               <Col s={6}>
-                <Button waves="light">Cancelar</Button>
+                <Button waves="light" onClick={this.cancelar.bind(this)}>Cancelar</Button>
               </Col>
               <Col s={6}>
                 <Button waves="light" onClick={this.pagar.bind(this)}>Pagar</Button>

@@ -46,7 +46,7 @@ class Login extends React.Component{
     }
 
     return(
-      <div className="contenedor_principal">
+      <div className="contenedor_login">
         <div className="container">
           <Row>
             <Col s={4} offset="s4">
@@ -57,13 +57,13 @@ class Login extends React.Component{
           <form onSubmit={(e) => this.login(e,this.state.usuario,this.state.psw)}>
             <Row>
                 <Col s={4} offset="s4">
-                  <TextInput label="Usuario" validate required value={this.state.usuario} onChange={this.handleChange.bind(this)}/>
+                  <TextInput label="Usuario" validate required value={this.state.usuario} onChange={this.handleChange.bind(this)} className="input"/>
                 </Col>
             </Row>
 
             <Row>
                 <Col s={4} offset="s4">
-                  <TextInput label="Password" password validate required value={this.state.psw} onChange={this.handleChangeP.bind(this)}/>
+                  <TextInput label="Password" password validate required value={this.state.psw} onChange={this.handleChangeP.bind(this)} className="input"/>
                 </Col>
             </Row>
 

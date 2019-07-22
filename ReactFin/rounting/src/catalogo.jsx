@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Input, Col, TextInput, Icon, Card,  Button } from 'react-materialize';
 import { getProductos } from './utils/httpService';
 import { toast } from 'materialize-css';
+import { Link } from 'react-router-dom';
 
 class Catalogo extends React.Component{
 
@@ -16,19 +17,25 @@ class Catalogo extends React.Component{
     event.preventDefault();
     //let carritoAux = this.state.carrito;
     let carritoAux = [];
+    let cantidadAux = [];
     if (sessionStorage.getItem('carrito') == null){
       carritoAux = this.state.carrito;
     }
     else {
       carritoAux = JSON.parse(sessionStorage.getItem('carrito'));
     }
-    carritoAux.push(this.state.productos[i]);
-    //this.setState({carrito:carritoAux});
-    sessionStorage.setItem('carrito',JSON.stringify(carritoAux))
-    console.log(JSON.parse(sessionStorage.getItem('carrito')))
-    sessionStorage.setItem('cantidad',JSON.stringify(this.state.cantidad2))
-    console.log(JSON.parse(sessionStorage.getItem('cantidad')))
-    //sessionStorage.setItem('productos',);
+    cantidadAux = this.state.cantidad2;
+      carritoAux.push(this.state.productos[i]);
+      console.log(carritoAux.length);
+      console.log(cantidadAux.length);
+      sessionStorage.setItem('carrito',JSON.stringify(carritoAux))
+      console.log(JSON.parse(sessionStorage.getItem('carrito')))
+      sessionStorage.setItem('cantidad',JSON.stringify(this.state.cantidad2))
+      console.log(JSON.parse(sessionStorage.getItem('cantidad')))
+      toast({
+        html: '<i class="material-icons">check_circle</i> Articulo añadido al carrito',
+        displayLength: 1000
+      })
   }
 
   handleChangeN(event,i) {
@@ -44,6 +51,7 @@ class Catalogo extends React.Component{
   componentWillMount (){
     getProductos().then(response => {
       this.setState({productos:response.data});
+      console.log(this.state.productos);
     });
   }
 
@@ -67,13 +75,19 @@ class Catalogo extends React.Component{
       console.log(this.state.carrito)
       //this.agregarCarrito(this.productos[indice]);
       //this.compras.total=this.compras.total+this.productos[indice].subtotal;
-      toast({
-        html: '<i class="material-icons">check_circle</i> Articulo añadido al carrito',
-        displayLength: 1000
-      })
       this.state.cantidad.indice=null;
       //this.valueChange.emit(this.compras.productosCarrito.length);
     }
+  }
+
+  handleInfo(event,i){
+    sessionStorage.setItem('info',JSON.stringify(i.item));
+    //console.log(sessionStorage.getItem('info'));
+    this.props.history.push('/principal/info');
+  }
+
+  CambioBusqueda(event){
+
   }
 
   render() {
@@ -95,8 +109,8 @@ class Catalogo extends React.Component{
                   <div className="card-action">
                     <Row>
                       <Col s={12}>
-                        <Button waves="light">Ver Mas
-                            <Icon right>info_outline</Icon>
+                        <Button waves="light" onClick={(e) => this.handleInfo(e,{item})}>Ver Mas
+                              <Icon right>info_outline</Icon>
                         </Button>
                       </Col>
                     </Row>
@@ -107,7 +121,7 @@ class Catalogo extends React.Component{
                         </Button>
                       </Col>
                       <Col s={4}>
-                        <TextInput type="number" min="1" max={item.unidades} step="1" placeholder="Qty" value={this.state.cantidad[i]} value={this.state.cantidad[i]} onChange={(e) => this.handleChangeN(e,i)}/>
+                        <TextInput type="number" min="1" max={item.unidades} step="1" placeholder="Qty" value={this.state.cantidad[i]} value={this.state.cantidad[i]} onBlur={(e) => this.handleChangeN(e,i)}/>
                       </Col>
                     </Row>
                   </div>
@@ -125,7 +139,7 @@ class Catalogo extends React.Component{
           </Col>
           <Col s={4} offset="s7">
             <Row>
-              <TextInput icon="search" label="Buscar" />
+              <TextInput icon="search" label="Buscar" onChange={this.CambioBusqueda.bind(this)}/>
             </Row>
           </Col>
         </Row>

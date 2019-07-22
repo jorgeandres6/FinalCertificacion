@@ -11,3 +11,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.contenedor_principal {
+    /* The image used */
+    background-image: url(./images/main-fondo2.jpg);
+
+    /* Full height */
+    height: device-height;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.contenedor_login {
+    /* The image used */
+    background-image: url(./images/login-fondo.jpg);
+    width: device-width;
+    height: 100vh;
+    position: static;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    outline-style: none;
+    border-style: none;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+h1, .input{
+  color: white;
+}
